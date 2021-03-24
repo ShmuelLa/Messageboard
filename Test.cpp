@@ -19,30 +19,30 @@ using namespace std;
 
 TEST_CASE("Exceptions") {
     Board board;
-    CHECK_THROWS(board.read(0,0,Direction::Horizontal,5));
-    CHECK_THROWS(board.read(0,0,Direction::Vertical,5));
+    CHECK_THROWS(board.read(10000,10000,Direction::Horizontal,5));
+    CHECK_THROWS(board.read(10000,10000,Direction::Vertical,5));
     CHECK_NOTHROW(board.post(0,0,Direction::Horizontal,"Shmuel"));
     CHECK_NOTHROW(board.post(0,0,Direction::Vertical,"Shmuel"));
     CHECK_THROWS(board.read(300,300,Direction::Horizontal,6));
     CHECK_THROWS(board.read(300,300,Direction::Vertical,17));
     CHECK_NOTHROW(board.post(300,300,Direction::Horizontal,"Shmuel"));
     CHECK_NOTHROW(board.post(300,300,Direction::Vertical,"Shmuel"));
-    CHECK_NOTHROW(board.read(300,300,Direction::Horizontal,5));
-    CHECK_NOTHROW(board.read(300,300,Direction::Vertical,5));
+    CHECK_NOTHROW(board.read(300,300,Direction::Horizontal,6));
+    CHECK_NOTHROW(board.read(300,300,Direction::Vertical,6));
 }
 
 TEST_CASE("Board changes") {
     Board board;
     CHECK_NOTHROW(board.post(0,0,Direction::Horizontal,"Shmuel"));
     CHECK_NOTHROW(board.post(0,0,Direction::Vertical,"Shmuel"));
-    CHECK(board.read(0,0,Direction::Horizontal,5) == "Shmuel");
-    CHECK(board.read(0,0,Direction::Vertical,5) == "Shmuel");
+    CHECK(board.read(0,0,Direction::Horizontal,6) == "Shmuel");
+    CHECK(board.read(0,0,Direction::Vertical,6) == "Shmuel");
     CHECK_NOTHROW(board.post(0,0,Direction::Horizontal,"T"));
-    CHECK(board.read(0,0,Direction::Horizontal,5) == "Thmuel");
-    CHECK(board.read(0,0,Direction::Vertical,5) == "Thmuel");
+    CHECK(board.read(0,0,Direction::Horizontal,6) == "Thmuel");
+    CHECK(board.read(0,0,Direction::Vertical,6) == "Thmuel");
     CHECK_NOTHROW(board.post(0,1,Direction::Horizontal,"T"));
-    CHECK(board.read(0,0,Direction::Horizontal,5) == "TTmuel");
-    CHECK(board.read(0,0,Direction::Vertical,5) == "Thmuel");
+    CHECK(board.read(0,0,Direction::Horizontal,6) == "TTmuel");
+    CHECK(board.read(0,0,Direction::Vertical,6) == "Thmuel");
     CHECK_NOTHROW(board.post(0,0,Direction::Horizontal,"KABAB"));
     CHECK_NOTHROW(board.post(0,0,Direction::Vertical,"KABAB"));
     CHECK(board.read(0,0,Direction::Horizontal,5) == "KABAB");
