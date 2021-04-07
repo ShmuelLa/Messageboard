@@ -1,6 +1,6 @@
 /**
  * @file Board.cpp
- * @author Shmula.Lavian
+ * @author Shmuel.Lavian
  * @brief 
  * @version 1
  * @date 2021-04-06
@@ -21,7 +21,7 @@ namespace ariel {
 
     void Board::post(unsigned int row, unsigned int column, Direction direction, string const &content) {
         for (size_t i = 0; i < content.length(); i++) {
-            brd[make_pair(row,column)] = content.at(i); 
+            brd[make_pair(row, column)] = content.at(i); 
             if (Direction::Horizontal == direction) column++;
             else row++;    
         }
@@ -43,8 +43,8 @@ namespace ariel {
     void Board::show() {
         unsigned int index = 0;
         unsigned int column = 0;
-        for(auto p : brd) { 
-            if(index == 0) {
+        for (auto p : brd) { 
+            if (index == 0) {
                 std::cout << p.second << endl;
                 index++;
                 column = p.first.first; 
