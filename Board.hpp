@@ -1,16 +1,15 @@
 #include <string>
-#include <vector>
+#include <map>
 #include "Direction.hpp"
 using namespace std;
 
 namespace ariel {
     class Board {
         private:
-            vector<vector<char>> board;
+            typedef pair <unsigned int, unsigned int> pos;
+            map <pos, char> brd;     
         public:
-            Board() {
-                board = {{"_","_"},{"_","_"}};
-            }
+            Board();
 		    void post(unsigned int row, unsigned int column, Direction direction, string const &content);
             string read(unsigned int row, unsigned int column, Direction direction, unsigned int length);
             void show();
