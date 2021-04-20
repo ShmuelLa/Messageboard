@@ -18,24 +18,53 @@ using namespace std;
 namespace ariel {
 
     Board::Board(){};
-
+    
+    /**
+     * @brief
+     * 
+     * @param row 
+     * @param column 
+     * @param direction 
+     * @param content 
+     */
     void Board::post(unsigned int row, unsigned int column, Direction direction, string const &content) {
         for (size_t i = 0; i < content.length(); i++) {
             brd[make_pair(row, column)] = content.at(i); 
-            if (Direction::Horizontal == direction) column++;
-            else row++;    
+            if (Direction::Horizontal == direction) {
+                column++;
+            }
+            else {
+                row++;
+            }
         }
     }
 
+    /**
+     * @brief 
+     * 
+     * @param row 
+     * @param column 
+     * @param direction 
+     * @param length 
+     * @return string 
+     */
     string Board::read(unsigned int row, unsigned int column, Direction direction, unsigned int length) {
         string result;
         char default_char = '_';
         for (size_t i = 0; i < length; i++) {           
-            if (brd[make_pair(row,column)] > 0) default_char = brd[make_pair(row,column)];
-            else default_char = '_'; 
+            if (brd[make_pair(row,column)] > 0) {
+                default_char = brd[make_pair(row,column)];
+            }
+            else {
+                default_char = '_'; 
+            }
             result += default_char;
-            if (Direction::Horizontal==direction) column++;
-            else row++;
+            if (Direction::Horizontal==direction) {
+                column++;
+            }
+            else {
+                row++;
+            }
         }       
         return result;
     }
@@ -45,7 +74,7 @@ namespace ariel {
         unsigned int column = 0;
         for (auto p : brd) { 
             if (index == 0) {
-                std::cout << p.second << endl;
+                std::cout << p.second;
                 index++;
                 column = p.first.first; 
             }
@@ -55,7 +84,9 @@ namespace ariel {
                     std::cout << p.second;
                     column = p.first.first;
                 }
-                else std::cout << p.second;         
+                else {
+                    std::cout << p.second;
+                }
             }    
         }
         cout << endl;
