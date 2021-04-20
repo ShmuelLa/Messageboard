@@ -17,19 +17,23 @@ using namespace std;
 
 namespace ariel {
 
+    /**
+     * @brief Construct a new Board:: Board object
+     * 
+     */
     Board::Board(){};
     
     /**
-     * @brief
+     * @brief posts a string on the board by dividing it into chars and adding to the main map
      * 
-     * @param row 
-     * @param column 
-     * @param direction 
-     * @param content 
+     * @param row unsigned int representing the row number to start from
+     * @param column unsigned int representing the column number to start from
+     * @param direction object representing the direction to post Vertical/Horizontal
+     * @param content string of the content to post on the board
      */
     void Board::post(unsigned int row, unsigned int column, Direction direction, string const &content) {
         for (size_t i = 0; i < content.length(); i++) {
-            brd[make_pair(row, column)] = content.at(i); 
+            board_map[make_pair(row, column)] = content.at(i); 
             if (Direction::Horizontal == direction) {
                 column++;
             }
@@ -42,23 +46,23 @@ namespace ariel {
     /**
      * @brief 
      * 
-     * @param row 
-     * @param column 
-     * @param direction 
-     * @param length 
-     * @return string 
+     * @param row unsigned int representing the row number to start from
+     * @param column unsigned int representing the column number to start from
+     * @param direction object representing the direction to post Vertical/Horizontal
+     * @param length the number of chars to read from the board
+     * @return string output of the content received from the board
      */
     string Board::read(unsigned int row, unsigned int column, Direction direction, unsigned int length) {
         string result;
-        char default_char = '_';
-        for (size_t i = 0; i < length; i++) {           
-            if (brd[make_pair(row,column)] > 0) {
-                default_char = brd[make_pair(row,column)];
+        char current_char = '_';
+        for (int i = 0; i < length; i++) {           
+            if (board_map[make_pair(row,column)] > 0) {
+                current_char = board_map[make_pair(row,column)];
             }
             else {
-                default_char = '_'; 
+                current_char = '_'; 
             }
-            result += default_char;
+            result += current_char;
             if (Direction::Horizontal==direction) {
                 column++;
             }
@@ -69,10 +73,14 @@ namespace ariel {
         return result;
     }
     
+    /**
+     * @brief Printouts all the content on the board's map
+     * 
+     */
     void Board::show() {
         unsigned int index = 0;
         unsigned int column = 0;
-        for (auto p : brd) { 
+        for (auto p : board_map) { 
             if (index == 0) {
                 std::cout << p.second;
                 index++;
