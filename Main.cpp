@@ -16,14 +16,14 @@ using namespace ariel;
 
 void generate_board(Board board, unsigned int dimensions, string message) {
     cout << endl;
-    for (unsigned int i=0; i <= dimensions*2; i++) {
-        for (unsigned int j=0; j <= dimensions*2; j++) {
+    for (unsigned int i=0; i <= dimensions*2+1; i++) {
+        for (unsigned int j=0; j <= dimensions*2+2; j++) {
             board.post(i, j, Direction::Vertical, " ");    
             board.post(i, j, Direction::Horizontal, " ");    
         }
     }
-    board.post(dimensions, dimensions, Direction::Vertical, string(dimensions, '#'));
-    board.post(dimensions, dimensions+1, Direction::Vertical, string(dimensions, '#'));
+    board.post(dimensions, dimensions, Direction::Vertical, string(dimensions+2, '#'));
+    board.post(dimensions, dimensions+1, Direction::Vertical, string(dimensions+2, '#'));
     board.post(0, 0, Direction::Vertical, string(dimensions*2, ' '));
     board.post(0, 5, Direction::Horizontal, message);
     board.post(1, 1, Direction::Vertical, string(dimensions, '|'));
@@ -37,11 +37,11 @@ void generate_board(Board board, unsigned int dimensions, string message) {
 int main() {
     Board board;
     unsigned int dimensions = 3;
-    generate_board(board, dimensions, "     This is a cute board");
+    generate_board(board, dimensions, "  This is a cute board");
     dimensions*=2;
-    generate_board(board, dimensions, "     This is a board");
+    generate_board(board, dimensions, "  This is a board");
     dimensions*=2;
-    generate_board(board, dimensions, "     This is a bigger board");
+    generate_board(board, dimensions, "  This is a bigger board");
     dimensions*=2;
-    generate_board(board, dimensions, "     This is a serious board");
+    generate_board(board, dimensions, "  This is a serious board");
 }

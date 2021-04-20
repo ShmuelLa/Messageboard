@@ -41,6 +41,12 @@ namespace ariel {
                 row++;
             }
         }
+        if (column > max_column) {
+            max_column = column;
+        }
+        if (row > max_row) {
+            max_row = row;
+        }
     }
 
     /**
@@ -74,29 +80,12 @@ namespace ariel {
     }
     
     /**
-     * @brief Printouts all the content on the board's map
+     * @brief Printouts all the content on the board's map using the read() function
      * 
      */
     void Board::show() {
-        unsigned int index = 0;
-        unsigned int column = 0;
-        for (auto p : board_map) { 
-            if (index == 0) {
-                std::cout << p.second;
-                index++;
-                column = p.first.first; 
-            }
-            else {
-                if (column != p.first.first) { 
-                    std::cout << endl;
-                    std::cout << p.second;
-                    column = p.first.first;
-                }
-                else {
-                    std::cout << p.second;
-                }
-            }    
+        for (unsigned int i = 0; i < max_column; i++) {
+            cout << read(i, 0, Direction::Horizontal, max_column) << endl;;
         }
-        cout << endl;
     }
 };
