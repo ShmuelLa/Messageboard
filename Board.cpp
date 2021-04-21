@@ -9,7 +9,6 @@
  * 
  */
 
-#include <string>
 #include <iostream>
 #include "Board.hpp"
 #include "Direction.hpp"

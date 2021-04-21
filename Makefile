@@ -16,6 +16,7 @@ test: TestRunner.o StudentTest1.o StudentTest2.o $(OBJECTS)
 main: Main.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o main
 	./main
+	make clean
 
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
